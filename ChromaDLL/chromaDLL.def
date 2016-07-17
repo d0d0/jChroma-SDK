@@ -1,0 +1,12 @@
+LIBRARY
+
+EXPORTS
+giveVoidPtrGetChar
+giveIntGetInt
+simpleCall
+giveVoidPtrGetInt
+initialize
+unInitialize
+playLoadingAnimation
+showDamageEffect
+showGauge
