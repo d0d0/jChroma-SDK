@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>com.jChroma</groupId>
+  <artifactId>jChroma-SDK</artifactId>
+  <versioning>
+    <versions>
+      <version>0.1-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20160717202358</lastUpdated>
+  </versioning>
+</metadata>
