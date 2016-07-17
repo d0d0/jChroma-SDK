@@ -1,5 +1,6 @@
+![Razer Chroma SDK](http://developer.razerzone.com/wp-content/uploads/works-with-razer-chroma.png)
 # jChroma SDK
-Unofficial Java wrapper for Chroma SDK
+Unofficial Java wrapper for Razer Chroma SDK
 
 Installation
 ------------
