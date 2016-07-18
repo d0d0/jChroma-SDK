@@ -1418,3 +1418,6 @@ BOOL CChromaSDKImpl::IsDeviceConnected(RZDEVICEID DeviceId)
 	return FALSE;
 }
 
+void CChromaSDKImpl::SetColors(const MousematColorStruct* colors, int numVal) {
+	mousemat.SetColors(colors, numVal);
+}

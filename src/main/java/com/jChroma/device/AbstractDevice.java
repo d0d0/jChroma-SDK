@@ -7,7 +7,7 @@ import java.awt.*;
 
 abstract class AbstractDevice {
 
-    private com.jChroma.inteface.jChromaInterface jChromaInterface = com.jChroma.inteface.jChromaInterface.getInstance();
+    protected com.jChroma.inteface.jChromaInterface jChromaInterface = com.jChroma.inteface.jChromaInterface.getInstance();
 
     void resetEffects(DeviceTypes deviceType) {
 

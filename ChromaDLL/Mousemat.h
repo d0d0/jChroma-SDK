@@ -6,6 +6,7 @@
 
 #include <windows.h>
 #include "SDK/RzChromaSDKTypes.h"
+#include "structs.h"
 
 class Mousemat {
 	typedef RZRESULT(*SETEFFECT)(RZEFFECTID EffectId);
@@ -22,6 +23,7 @@ public:
 	void ShowGauge(UINT Level);
 	void ShowDamageEffect();
 	void ResetEffects();
+	void SetColors(const MousematColorStruct* colors, int numVal);
 };
 
 #endif

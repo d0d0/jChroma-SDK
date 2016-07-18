@@ -88,6 +88,21 @@ public class ChromaTest {
 
         t1.start();
         t1.join();
+
+        t1 = new Thread() {
+            public void run() {
+                System.out.println("Enjoy coloring");
+                chroma.getMousemat().setColors();
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        t1.start();
+        t1.join();
     }
 
 }

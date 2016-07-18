@@ -5,47 +5,7 @@
 using namespace std;
 
 
-namespace chromaDLLNS
-{
-	char chromaDLL::giveVoidPtrGetChar(void* param)
-	{
-		if (param != 0)
-		{
-			char* paramChrPtr = (char*)param;
-			return *paramChrPtr;
-		}
-		else
-		{
-			return 'x';
-		}
-
-	}
-
-	int chromaDLL::giveIntGetInt(int a)
-	{
-		return 2 * a;
-	}
-
-	void chromaDLL::simpleCall(void)
-	{
-		int x = 3;
-		return;
-	}
-
-	int chromaDLL::giveVoidPtrGetInt(void* param)
-	{
-		if (param != 0)
-		{
-			int* x = (int*)param;
-			return *x;
-
-		}
-		else
-		{
-			return -1;
-		}
-	}
-
+namespace chromaDLLNS {
 	void chromaDLL::initialize() {
 		CChromaSDKImpl m_ChromaSDKImpl1;
 		m_ChromaSDKImpl1.Initialize();
@@ -70,5 +30,9 @@ namespace chromaDLLNS
 	void chromaDLL::showColor(int r, int g, int b, int deviceType) {
 		COLORREF color = RGB(r, g, b);
 		m_ChromaSDKImpl.ShowColor(deviceType, color);
+	}
+
+	void chromaDLL::setColors(const MousematColorStruct* colors, int numVals) {
+		m_ChromaSDKImpl.SetColors(colors, numVals);
 	}
 }

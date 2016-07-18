@@ -133,6 +133,20 @@ void Mousemat::ResetEffects() {
 	}
 }
 
+void Mousemat::SetColors(const MousematColorStruct* colors, int numVal) {
+	if (CreateMousepadEffect) {
+		CreateMousepadEffect(ChromaSDK::Mousepad::CHROMA_NONE, NULL, NULL);
+
+		ChromaSDK::Mousepad::CUSTOM_EFFECT_TYPE CustomEffect = {};
+
+		for (int i = 0; i < numVal; i++) {
+			CustomEffect.Color[colors[i].position] = RGB(colors[i].r, colors[i].g, colors[i].b);
+		}
+
+		CreateMousepadEffect(ChromaSDK::Mousepad::CHROMA_CUSTOM, &CustomEffect, NULL);
+	}
+}
+
 DWORD WINAPI Thread_LoadingAnimationOnMousepad(LPVOID lpParameter) {
 	if (CreateMousepadEffect) {
 		CreateMousepadEffect(ChromaSDK::Mousepad::CHROMA_NONE, NULL, NULL);

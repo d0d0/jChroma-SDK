@@ -7,6 +7,7 @@
 #include "SDK/RzChromaSDKDefines.h"
 #include "SDK/RzChromaSDKTypes.h"
 #include "SDK/RzErrors.h"
+#include "structs.h"
 #include "Mousemat.h"
 #include "MouseDevice.h"
 
@@ -49,7 +50,7 @@ public:
 	void ShowColor(UINT DeviceType, COLORREF Color);
 	void ResetEffects(UINT DeviceType);
 	BOOL IsDeviceConnected(RZDEVICEID DeviceId);
-
+	void SetColors(const MousematColorStruct* colors, int numVal);
 private:
 	HMODULE m_ChromaSDKModule;
 };

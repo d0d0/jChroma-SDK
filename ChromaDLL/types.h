@@ -25,4 +25,5 @@ CREATEKEYPADEFFECT CreateKeypadEffect = NULL;
 SETEFFECT SetEffect = NULL;
 DELETEEFFECT DeleteEffect = NULL;
 QUERYDEVICE QueryDevice = NULL;
+
 #endif // !__TYPES
