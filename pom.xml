@@ -5,7 +5,7 @@
 
     <groupId>com.jChroma</groupId>
     <artifactId>jChroma-SDK</artifactId>
-    <version>0.2-SNAPSHOT</version>
+    <version>0.3-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>jChroma-SDK</name>
@@ -71,6 +71,7 @@
                     </includes>
                     <repositoryName>jChroma-SDK</repositoryName>
                     <repositoryOwner>D0d0</repositoryOwner>
+                    <merge>true</merge>
                 </configuration>
                 <executions>
                     <!-- run site-maven-plugin's 'site' target as part of the build's normal 'deploy' phase -->
