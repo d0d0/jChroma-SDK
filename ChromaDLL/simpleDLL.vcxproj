@@ -150,14 +150,19 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="ChromaSDKImpl.h" />
+    <ClInclude Include="MouseDevice.h" />
+    <ClInclude Include="Mousemat.h" />
     <ClInclude Include="SDK\RzChromaSDKDefines.h" />
     <ClInclude Include="SDK\RzChromaSDKTypes.h" />
     <ClInclude Include="SDK\RzErrors.h" />
     <ClInclude Include="chromaDLL.h" />
+    <ClInclude Include="types.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ChromaSDKImpl.cpp" />
     <ClCompile Include="chromaDLL.cpp" />
+    <ClCompile Include="MouseDevice.cpp" />
+    <ClCompile Include="Mousemat.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="chromaDLL.def" />

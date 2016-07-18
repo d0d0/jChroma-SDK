@@ -1,6 +1,6 @@
 package com.jChroma.utils;
 
-public enum Devices {
+public enum DeviceTypes {
     ALL_DEVICES(0),
     KEYBOARD_DEVICES(1),
     MOUSEMAT_DEVICES(2),
@@ -10,7 +10,8 @@ public enum Devices {
 
     private int value;
 
-    Devices(int i) {
+    DeviceTypes(int i) {
+
         this.value = i;
     }
 

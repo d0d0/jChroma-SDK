@@ -27,11 +27,11 @@ public interface jChromaInterface extends Library {
 
     void playLoadingAnimation(int ignored, int deviceType);
 
-    void showDamageEffect(int deviceType);
+    void showDamageEffect(int ignored, int deviceType);
 
     void showGauge(int ignored, int i, int deviceType);
 
     void resetEffects(int ignored, int deviceType);
 
-    void showColor(int ignore, int r, int g, int b, int deviceType);
+    void showColor(int ignored, int r, int g, int b, int deviceType);
 }

@@ -1,9 +1,8 @@
-//! \example ChromaSDKImpl.cpp
-
 #include "afx.h"
 #include "ChromaSDKImpl.h"
 
 #include <iostream>
+#include "types.h"
 
 #ifdef _WIN64
 #define CHROMASDKDLL        _T("RzChromaSDK64.dll")
@@ -17,32 +16,6 @@ using namespace ChromaSDK::Keypad;
 using namespace ChromaSDK::Mouse;
 using namespace ChromaSDK::Mousepad;
 using namespace ChromaSDK::Headset;
-
-typedef RZRESULT(*INIT)(void);
-typedef RZRESULT(*UNINIT)(void);
-typedef RZRESULT(*CREATEEFFECT)(RZDEVICEID DeviceId, ChromaSDK::EFFECT_TYPE Effect, PRZPARAM pParam, RZEFFECTID *pEffectId);
-typedef RZRESULT(*CREATEKEYBOARDEFFECT)(ChromaSDK::Keyboard::EFFECT_TYPE Effect, PRZPARAM pParam, RZEFFECTID *pEffectId);
-typedef RZRESULT(*CREATEHEADSETEFFECT)(ChromaSDK::Headset::EFFECT_TYPE Effect, PRZPARAM pParam, RZEFFECTID *pEffectId);
-typedef RZRESULT(*CREATEMOUSEPADEFFECT)(ChromaSDK::Mousepad::EFFECT_TYPE Effect, PRZPARAM pParam, RZEFFECTID *pEffectId);
-typedef RZRESULT(*CREATEMOUSEEFFECT)(ChromaSDK::Mouse::EFFECT_TYPE Effect, PRZPARAM pParam, RZEFFECTID *pEffectId);
-typedef RZRESULT(*CREATEKEYPADEFFECT)(ChromaSDK::Keypad::EFFECT_TYPE Effect, PRZPARAM pParam, RZEFFECTID *pEffectId);
-typedef RZRESULT(*SETEFFECT)(RZEFFECTID EffectId);
-typedef RZRESULT(*DELETEEFFECT)(RZEFFECTID EffectId);
-typedef RZRESULT(*REGISTEREVENTNOTIFICATION)(HWND hWnd);
-typedef RZRESULT(*UNREGISTEREVENTNOTIFICATION)(void);
-typedef RZRESULT(*QUERYDEVICE)(RZDEVICEID DeviceId, ChromaSDK::DEVICE_INFO_TYPE &DeviceInfo);
-
-INIT Init = NULL;
-UNINIT UnInit = NULL;
-CREATEEFFECT CreateEffect = NULL;
-CREATEKEYBOARDEFFECT CreateKeyboardEffect = NULL;
-CREATEMOUSEEFFECT CreateMouseEffect = NULL;
-CREATEHEADSETEFFECT CreateHeadsetEffect = NULL;
-CREATEMOUSEPADEFFECT CreateMousepadEffect = NULL;
-CREATEKEYPADEFFECT CreateKeypadEffect = NULL;
-SETEFFECT SetEffect = NULL;
-DELETEEFFECT DeleteEffect = NULL;
-QUERYDEVICE QueryDevice = NULL;
 
 DWORD WINAPI Thread_LoadingAnimationOnKeyboard(LPVOID lpParameter)
 {
@@ -142,106 +115,6 @@ DWORD WINAPI Thread_LoadingAnimationOnKeyboard(LPVOID lpParameter)
 		StaticEffect.Color = ORANGE;
 
 		CreateKeyboardEffect(ChromaSDK::Keyboard::CHROMA_STATIC, &StaticEffect, NULL);
-	}
-
-	return 0;
-}
-
-DWORD WINAPI Thread_LoadingAnimationOnMousepad(LPVOID lpParameter)
-{
-	if (CreateMousepadEffect)
-	{
-		CreateMousepadEffect(ChromaSDK::Mousepad::CHROMA_NONE, NULL, NULL);
-		Sleep(500);
-
-		ChromaSDK::Mousepad::CUSTOM_EFFECT_TYPE CustomEffect = {};
-		for (UINT i = ChromaSDK::Mousepad::MAX_LEDS - 1; i > 0; --i)
-		{
-			CustomEffect.Color[i] = ORANGE;
-
-			CreateMousepadEffect(ChromaSDK::Mousepad::CHROMA_CUSTOM, &CustomEffect, NULL);
-
-			Sleep(50);
-		}
-	}
-
-	return 0;
-}
-
-DWORD WINAPI Thread_LoadingAnimationOnMice(LPVOID lpParameter)
-{
-	if (CreateMouseEffect)
-	{
-		// This works too!
-		// Using old interface.
-		//ChromaSDK::Mouse::CUSTOM_EFFECT_TYPE CustomEffect = {};
-
-		//CreateMouseEffect(ChromaSDK::Mouse::CHROMA_CUSTOM, &CustomEffect, NULL);
-
-		//Sleep(500);
-
-		//for(UINT i=0; i<7; i++)
-		//{
-		//    CustomEffect.Color[RZLED_SIDE_STRIP7-i] = ORANGE;
-		//    CustomEffect.Color[RZLED_SIDE_STRIP14-i] = ORANGE;
-
-		//    if(i == 2)
-		//    {
-		//        CustomEffect.Color[RZLED_LOGO] = ORANGE;
-		//    }
-		//    else if(i == 6)
-		//    {
-		//        CustomEffect.Color[RZLED_SCROLLWHEEL] = ORANGE;
-		//    }
-
-		//    CreateMouseEffect(ChromaSDK::Mouse::CHROMA_CUSTOM, &CustomEffect, NULL);
-
-		//    Sleep(50);
-		//}
-
-		// Using the new mice virtual grid
-		ChromaSDK::Mouse::CUSTOM_EFFECT_TYPE2 CustomEffect = {};
-
-		CreateMouseEffect(ChromaSDK::Mouse::CHROMA_CUSTOM2, &CustomEffect, NULL);
-
-		Sleep(500);
-
-		for (UINT i = 0; i < 7; i++)
-		{
-			CustomEffect.Color[HIBYTE(RZLED2_LEFT_SIDE7) - i][0] = ORANGE;
-			CustomEffect.Color[HIBYTE(RZLED2_RIGHT_SIDE7) - i][6] = ORANGE;
-
-			if (i == 0)
-			{
-				// For Razer Diamondback bottom LEDs.
-				CustomEffect.Color[8][LOBYTE(RZLED2_BOTTOM1)] = RED;
-				CustomEffect.Color[8][LOBYTE(RZLED2_BOTTOM5)] = RED;
-			}
-			else if (i == 2)
-			{
-				CustomEffect.Color[HIBYTE(RZLED2_LOGO)][LOBYTE(RZLED2_LOGO)] = ORANGE;
-
-				// For Razer Diamondback bottom LEDs.
-				CustomEffect.Color[8][LOBYTE(RZLED2_BOTTOM2)] = RED;
-				CustomEffect.Color[8][LOBYTE(RZLED2_BOTTOM4)] = RED;
-			}
-			else if (i == 4)
-			{
-				// For Razer Naga Epic numpad LED.
-				CustomEffect.Color[HIBYTE(RZLED2_BACKLIGHT)][LOBYTE(RZLED2_BACKLIGHT)] = ORANGE;
-			}
-			else if (i == 6)
-			{
-				CustomEffect.Color[HIBYTE(RZLED2_SCROLLWHEEL)][LOBYTE(RZLED2_SCROLLWHEEL)] = ORANGE;
-
-				// For Razer Diamondback bottom LEDs.
-				CustomEffect.Color[8][LOBYTE(RZLED2_BOTTOM3)] = RED;
-			}
-
-			CreateMouseEffect(ChromaSDK::Mouse::CHROMA_CUSTOM2, &CustomEffect, NULL);
-
-			Sleep(50);
-		}
 	}
 
 	return 0;
@@ -498,9 +371,7 @@ BOOL CChromaSDKImpl::Initialize()
 			{
 				CreateEffect = (CREATEEFFECT)GetProcAddress(m_ChromaSDKModule, "CreateEffect");
 				CreateKeyboardEffect = (CREATEKEYBOARDEFFECT)GetProcAddress(m_ChromaSDKModule, "CreateKeyboardEffect");
-				CreateMouseEffect = (CREATEMOUSEEFFECT)GetProcAddress(m_ChromaSDKModule, "CreateMouseEffect");
 				CreateHeadsetEffect = (CREATEHEADSETEFFECT)GetProcAddress(m_ChromaSDKModule, "CreateHeadsetEffect");
-				CreateMousepadEffect = (CREATEMOUSEPADEFFECT)GetProcAddress(m_ChromaSDKModule, "CreateMousepadEffect");
 				CreateKeypadEffect = (CREATEKEYPADEFFECT)GetProcAddress(m_ChromaSDKModule, "CreateKeypadEffect");
 				SetEffect = (SETEFFECT)GetProcAddress(m_ChromaSDKModule, "SetEffect");
 				DeleteEffect = (DELETEEFFECT)GetProcAddress(m_ChromaSDKModule, "DeleteEffect");
@@ -508,9 +379,9 @@ BOOL CChromaSDKImpl::Initialize()
 
 				if (CreateEffect &&
 					CreateKeyboardEffect &&
-					CreateMouseEffect &&
+					mouseDevice.Initialize(m_ChromaSDKModule) &&
 					CreateHeadsetEffect &&
-					CreateMousepadEffect &&
+					mousemat.Initialize(m_ChromaSDKModule) &&
 					CreateKeypadEffect &&
 					SetEffect &&
 					DeleteEffect &&
@@ -560,11 +431,11 @@ void CChromaSDKImpl::PlayLoadingAnimation(UINT DeviceType)
 		CloseHandle(hWorkerThread);
 		break;
 	case 2:
-		hWorkerThread = CreateThread(NULL, 0, Thread_LoadingAnimationOnMousepad, this, 0, NULL);
+		//hWorkerThread = CreateThread(NULL, 0, Thread_LoadingAnimationOnMousepad, this, 0, NULL);
 		CloseHandle(hWorkerThread);
 		break;
 	case 3:
-		hWorkerThread = CreateThread(NULL, 0, Thread_LoadingAnimationOnMice, this, 0, NULL);
+		//hWorkerThread = CreateThread(NULL, 0, Thread_LoadingAnimationOnMice, this, 0, NULL);
 		CloseHandle(hWorkerThread);
 		break;
 	case 4:
@@ -767,71 +638,10 @@ void CChromaSDKImpl::ShowLevel(UINT DeviceType, UINT Hp, UINT Ammo)
 		}
 		break;
 	case 2:
-		if (CreateMousepadEffect)
-		{
-			ChromaSDK::Mousepad::CUSTOM_EFFECT_TYPE Effect = {};
-
-			FLOAT RemainingHealth = FLOAT((FLOAT)Hp / 100.0 * 5.0); // 5 LEDs on the left.
-
-			COLORREF HpColor;
-			if (RemainingHealth == 0.0)
-			{
-				HpColor = RED;
-
-				Effect.Color[10] = HpColor;
-				Effect.Color[11] = HpColor;
-				Effect.Color[12] = HpColor;
-				Effect.Color[13] = HpColor;
-				Effect.Color[14] = HpColor;
-			}
-			else
-			{
-				HpColor = RGB((((5 - RemainingHealth) / 5.0) * 255), ((RemainingHealth / 5.0) * 255), 0);
-
-				for (UINT i = 0; i < RemainingHealth; i++)
-				{
-					// Display Hp on the left side of the mouse mat.
-					Effect.Color[10 + i] = HpColor;
-				}
-			}
-
-			// Number keys as ammo
-			UINT RemainingAmmo = UINT(Ammo / 100.0 * 5.0); // 5 LEDs on the right.
-
-			for (UINT i = 0; i < RemainingAmmo; i++)
-			{
-				// Display ammo/mana on the right side.
-				Effect.Color[4 - i] = YELLOW;
-			}
-
-			CreateMousepadEffect(ChromaSDK::Mousepad::CHROMA_CUSTOM, &Effect, NULL);
-		}
+		mousemat.ShowLevel(Hp, Ammo);
 		break;
 	case 3:
-		if (CreateMouseEffect)
-		{
-			ChromaSDK::Mouse::CUSTOM_EFFECT_TYPE Effect = {};
-
-			UINT RemainingHealth = UINT(Hp / 100.0 * 7.0); // 7 LEDs on the left.
-
-			COLORREF HpColor = RGB((((5 - RemainingHealth) / 5.0) * 255), ((RemainingHealth / 5.0) * 255), 0);
-
-			// Display Hp on the left side of the mouse.
-			for (UINT i = 0; i < RemainingHealth; i++)
-			{
-				Effect.Color[RZLED_SIDE_STRIP7 - i] = HpColor;
-			}
-
-			UINT RemainingAmmo = UINT(Ammo / 100.0 * 7.0); // 7 LEDs on the right.
-
-			// Display ammo/mana on the right side of the mouse.
-			for (UINT i = 0; i < RemainingAmmo; i++)
-			{
-				Effect.Color[RZLED_SIDE_STRIP14 - i] = YELLOW;
-			}
-
-			CreateMouseEffect(ChromaSDK::Mouse::CHROMA_CUSTOM, &Effect, NULL);
-		}
+		mouseDevice.ShowLevel(Hp, Ammo);
 		break;
 	case 4:
 		if (CreateHeadsetEffect)
@@ -914,58 +724,10 @@ void CChromaSDKImpl::ShowAlert(UINT DeviceType, COLORREF Color)
 		}
 		break;
 	case 2:
-		if (CreateMousepadEffect)
-		{
-			ChromaSDK::Mousepad::STATIC_EFFECT_TYPE StaticEffect = {};
-			StaticEffect.Color = Color;
-
-			CreateMousepadEffect(ChromaSDK::Mousepad::CHROMA_STATIC, &StaticEffect, &Alert);
-			CreateMousepadEffect(ChromaSDK::Mousepad::CHROMA_NONE, NULL, &NoAlert);
-
-			for (UINT t = 0; t < 3; t++)
-			{
-				SetEffect(Alert);
-				Sleep(200);
-
-				SetEffect(NoAlert);
-				Sleep(200);
-			}
-
-			DeleteEffect(Alert);
-			DeleteEffect(NoAlert);
-		}
+		mousemat.ShowAlert(Color);
 		break;
 	case 3:
-		if (CreateMouseEffect)
-		{
-			ChromaSDK::Mouse::CUSTOM_EFFECT_TYPE2 CustomEffect = {};
-			for (int i = 0; i < Mouse::MAX_ROW; i++)
-			{
-				for (int j = 0; j < Mouse::MAX_COLUMN; j++)
-				{
-					CustomEffect.Color[i][j] = Color;
-				}
-			}
-
-			CreateMouseEffect(ChromaSDK::Mouse::CHROMA_CUSTOM2, &CustomEffect, &Alert);
-
-			ChromaSDK::Mouse::NO_EFFECT_TYPE NoEffect = {};
-			NoEffect.LEDId = RZLED_ALL;
-
-			CreateMouseEffect(ChromaSDK::Mouse::CHROMA_NONE, &NoEffect, &NoAlert);
-
-			for (UINT t = 0; t < 3; t++)
-			{
-				SetEffect(Alert);
-				Sleep(200);
-
-				SetEffect(NoAlert);
-				Sleep(200);
-			}
-
-			DeleteEffect(Alert);
-			DeleteEffect(NoAlert);
-		}
+		mouseDevice.ShowAlert(Color);
 		break;
 	case 4:
 		if (CreateHeadsetEffect)
@@ -1250,19 +1012,7 @@ void CChromaSDKImpl::ShowGauge(UINT DeviceType, UINT Level)
 		}
 		break;
 	case 2:
-		if (CreateMousepadEffect)
-		{
-			UINT Gauge = UINT(Level / 100.0 * 15.0);
-
-			ChromaSDK::Mousepad::CUSTOM_EFFECT_TYPE Effect = {};
-
-			for (UINT i = 0; i < Gauge; i++)
-			{
-				Effect.Color[i] = RED;
-			}
-
-			CreateMousepadEffect(ChromaSDK::Mousepad::CHROMA_CUSTOM, &Effect, NULL);
-		}
+		mousemat.ShowGauge(Level);
 		break;
 	case 5:
 		if (CreateKeypadEffect)
@@ -1520,35 +1270,10 @@ void CChromaSDKImpl::ShowDamageEffect(UINT DeviceType)
 		}
 		break;
 	case 2:
-		if (CreateMousepadEffect)
-		{
-			ChromaSDK::Mousepad::STATIC_EFFECT_TYPE Effect = {};
-			Effect.Color = RED;
-
-			CreateMousepadEffect(ChromaSDK::Mousepad::CHROMA_STATIC, &Effect, NULL);
-			Sleep(50);
-			CreateMousepadEffect(ChromaSDK::Mousepad::CHROMA_NONE, NULL, NULL);
-		}
+		mousemat.ShowDamageEffect();
 		break;
 	case 3:
-		if (CreateMouseEffect)
-		{
-			ChromaSDK::Mouse::CUSTOM_EFFECT_TYPE2 Effect = {};
-			for (int i = 0; i < Mouse::MAX_ROW; i++)
-			{
-				for (int j = 0; j < Mouse::MAX_COLUMN; j++)
-				{
-					Effect.Color[i][j] = RED;
-				}
-			}
-
-			ChromaSDK::Mouse::STATIC_EFFECT_TYPE NoEffect = {};
-			NoEffect.LEDId = RZLED_ALL;
-
-			CreateMouseEffect(ChromaSDK::Mouse::CHROMA_CUSTOM2, &Effect, NULL);
-			Sleep(50);
-			CreateMouseEffect(ChromaSDK::Mouse::CHROMA_NONE, &NoEffect, NULL);
-		}
+		mouseDevice.ShowDamageEffect();
 		break;
 	case 4:
 		if (CreateHeadsetEffect)
@@ -1593,13 +1318,7 @@ void CChromaSDKImpl::ShowColor(UINT DeviceType, COLORREF Color)
 		}
 		break;
 	case 2:
-		if (CreateMousepadEffect)
-		{
-			ChromaSDK::Mousepad::STATIC_EFFECT_TYPE Effect = {};
-			Effect.Color = Color;
-
-			CreateMousepadEffect(ChromaSDK::Mousepad::CHROMA_STATIC, &Effect, NULL);
-		}
+		mousemat.ShowColor(Color);
 		break;
 	case 4:
 		if (CreateHeadsetEffect)
@@ -1643,15 +1362,9 @@ void CChromaSDKImpl::ResetEffects(UINT DeviceType)
 			CreateKeyboardEffect(ChromaSDK::Keyboard::CHROMA_NONE, NULL, NULL);
 		}
 
-		if (CreateMousepadEffect)
-		{
-			CreateMousepadEffect(ChromaSDK::Mousepad::CHROMA_NONE, NULL, NULL);
-		}
+		mousemat.ResetEffects();
 
-		if (CreateMouseEffect)
-		{
-			CreateMouseEffect(ChromaSDK::Mouse::CHROMA_NONE, NULL, NULL);
-		}
+		mouseDevice.ResetEffects();
 
 		if (CreateHeadsetEffect)
 		{
@@ -1670,16 +1383,10 @@ void CChromaSDKImpl::ResetEffects(UINT DeviceType)
 		}
 		break;
 	case 2:
-		if (CreateMousepadEffect)
-		{
-			CreateMousepadEffect(ChromaSDK::Mousepad::CHROMA_NONE, NULL, NULL);
-		}
+		mousemat.ResetEffects();
 		break;
 	case 3:
-		if (CreateMouseEffect)
-		{
-			CreateMouseEffect(ChromaSDK::Mouse::CHROMA_NONE, NULL, NULL);
-		}
+		mouseDevice.ResetEffects();
 		break;
 	case 4:
 		if (CreateHeadsetEffect)

@@ -7,6 +7,8 @@
 #include "SDK/RzChromaSDKDefines.h"
 #include "SDK/RzChromaSDKTypes.h"
 #include "SDK/RzErrors.h"
+#include "Mousemat.h"
+#include "MouseDevice.h"
 
 const COLORREF BLACK = RGB(0, 0, 0);
 const COLORREF WHITE = RGB(255, 255, 255);
@@ -27,8 +29,9 @@ const COLORREF GREY = RGB(125, 125, 125);
 #define HEADSET_DEVICES     4
 #define KEYPAD_DEVICES      5
 
-class CChromaSDKImpl
-{
+class CChromaSDKImpl {
+	Mousemat mousemat;
+	MouseDevice mouseDevice;
 public:
 	CChromaSDKImpl();
 	~CChromaSDKImpl();

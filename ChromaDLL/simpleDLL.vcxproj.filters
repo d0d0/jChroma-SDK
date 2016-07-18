@@ -30,12 +30,27 @@
     <ClInclude Include="chromaDLL.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Mousemat.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="types.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MouseDevice.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ChromaSDKImpl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="chromaDLL.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mousemat.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MouseDevice.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
