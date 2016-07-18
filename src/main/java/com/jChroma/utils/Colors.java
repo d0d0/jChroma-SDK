@@ -35,11 +35,23 @@ public enum Colors {
 
     public Color getColor() {
 
-        return new Color(this.r, this.g, this.b);
+        return new Color(this.getR(), this.getG(), this.getB());
     }
 
     public int getARGB() {
 
-        return 0xFF000000 | ((r << 16) & 0x00FF0000) | ((g << 8) & 0x0000FF00) | b;
+        return 0xFF000000 | ((getR() << 16) & 0x00FF0000) | ((getG() << 8) & 0x0000FF00) | getB();
+    }
+
+    public int getR() {
+        return r;
+    }
+
+    public int getG() {
+        return g;
+    }
+
+    public int getB() {
+        return b;
     }
 }

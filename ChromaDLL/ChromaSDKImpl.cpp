@@ -1592,6 +1592,15 @@ void CChromaSDKImpl::ShowColor(UINT DeviceType, COLORREF Color)
 			ASSERT(Result == RZRESULT_SUCCESS);
 		}
 		break;
+	case 2:
+		if (CreateMousepadEffect)
+		{
+			ChromaSDK::Mousepad::STATIC_EFFECT_TYPE Effect = {};
+			Effect.Color = Color;
+
+			CreateMousepadEffect(ChromaSDK::Mousepad::CHROMA_STATIC, &Effect, NULL);
+		}
+		break;
 	case 4:
 		if (CreateHeadsetEffect)
 		{

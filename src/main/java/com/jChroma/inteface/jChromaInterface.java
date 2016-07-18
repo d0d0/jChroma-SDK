@@ -7,6 +7,11 @@ import com.sun.jna.Pointer;
 public interface jChromaInterface extends Library {
     jChromaInterface INSTANCE = (jChromaInterface) NativeUtils.loadLibraryFromJar(System.getProperty("sun.arch.data.model").equals("32") ? "/chromaDLL.dll" : "/chromaDLL64.dll");
 
+    static jChromaInterface getInstance() {
+
+        return INSTANCE;
+    }
+
     // it's possible to check the platform on which program runs, for example purposes we assume that there's a linux port of the library (it's not attached to the downloadable project)
     byte giveVoidPtrGetChar(Pointer param); // char giveVoidPtrGetChar(void* param);
 
@@ -18,11 +23,15 @@ public interface jChromaInterface extends Library {
 
     void initialize();
 
-    void playLoadingAnimation();
-
     void unInitialize();
 
-    void showDamageEffect();
+    void playLoadingAnimation(int ignored, int deviceType);
 
-    void showGauge(int i, int j);
+    void showDamageEffect(int deviceType);
+
+    void showGauge(int ignored, int i, int deviceType);
+
+    void resetEffects(int ignored, int deviceType);
+
+    void showColor(int ignore, int r, int g, int b, int deviceType);
 }

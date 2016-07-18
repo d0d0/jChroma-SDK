@@ -10,3 +10,4 @@ unInitialize
 playLoadingAnimation
 showDamageEffect
 showGauge
+showColor
