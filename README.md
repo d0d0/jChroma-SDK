@@ -20,6 +20,19 @@ Add to your `pom.xml` file
 <dependency>
     <groupId>com.jChroma</groupId>
     <artifactId>jChroma-SDK</artifactId>
-    <version>0.1-SNAPSHOT</version>
+    <version>0.4-SNAPSHOT</version>
 </dependency>
 ```
+
+Usage
+-----
+First we must create and initialize Chroma object
+```java
+Chroma chroma = Chroma.getInstance();
+```
+
+Chroma object can access devices. To access Mousemat device use
+```java
+chroma.getMousemat();
+```
+Now you can change effects on mousemat.
