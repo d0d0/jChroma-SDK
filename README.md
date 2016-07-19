@@ -36,3 +36,7 @@ Chroma object can access devices. To access Mousemat device use
 chroma.getMousemat();
 ```
 Now you can change effects on mousemat.
+
+Testing effects
+---------------
+You can test effects by running test files.
