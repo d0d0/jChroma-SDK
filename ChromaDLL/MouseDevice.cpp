@@ -113,10 +113,8 @@ void MouseDevice::ResetEffects() {
 	}
 }
 
-DWORD WINAPI Thread_LoadingAnimationOnMice(LPVOID lpParameter)
-{
-	if (CreateMouseEffect)
-	{
+DWORD WINAPI MouseDevice::Thread_LoadingAnimationOnMice(LPVOID lpParameter) {
+	if (CreateMouseEffect) {
 		ChromaSDK::Mouse::CUSTOM_EFFECT_TYPE2 CustomEffect = {};
 
 		CreateMouseEffect(ChromaSDK::Mouse::CHROMA_CUSTOM2, &CustomEffect, NULL);

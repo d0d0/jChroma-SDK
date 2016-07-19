@@ -164,4 +164,48 @@ public final class Mousemat extends AbstractDevice {
 
         super.jChromaInterface.setColors(0, byReference, 15);
     }
+
+    public void knightRider() throws InterruptedException {
+        com.jChroma.inteface.jChromaInterface jChromaInterface = super.jChromaInterface;
+        Thread t = new Thread() {
+            @Override
+            public void run() {
+                int redPosition = 0;
+                int direction = 1;
+                while (true) {
+                    MousematColorStruct.ByReference byReference = new MousematColorStruct.ByReference();
+
+                    MousematColorStruct[] mousematColorStructs = (MousematColorStruct[]) byReference.toArray(15);
+
+                    if (redPosition - direction >= 0 && redPosition - direction < 15) {
+                        mousematColorStructs[redPosition - direction].r = 0;
+                        mousematColorStructs[redPosition - direction].g = 0;
+                        mousematColorStructs[redPosition - direction].b = 0;
+                        mousematColorStructs[redPosition - direction].position = redPosition;
+                    }
+
+                    mousematColorStructs[redPosition].r = 255;
+                    mousematColorStructs[redPosition].g = 0;
+                    mousematColorStructs[redPosition].b = 0;
+                    mousematColorStructs[redPosition].position = redPosition;
+
+                    redPosition += direction;
+                    if (redPosition == 0 || redPosition == 14) {
+                        direction *= -1;
+                    }
+
+                    jChromaInterface.setColors(0, byReference, 15);
+
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        };
+
+        t.start();
+        t.join();
+    }
 }

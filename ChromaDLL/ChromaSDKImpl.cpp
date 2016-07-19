@@ -421,8 +421,7 @@ BOOL CChromaSDKImpl::UnInitialize()
 	return FALSE;
 }
 
-void CChromaSDKImpl::PlayLoadingAnimation(UINT DeviceType)
-{
+void CChromaSDKImpl::PlayLoadingAnimation(UINT DeviceType) {
 	HANDLE hWorkerThread = NULL;
 	switch (DeviceType)
 	{
@@ -431,11 +430,11 @@ void CChromaSDKImpl::PlayLoadingAnimation(UINT DeviceType)
 		CloseHandle(hWorkerThread);
 		break;
 	case 2:
-		//hWorkerThread = CreateThread(NULL, 0, Thread_LoadingAnimationOnMousepad, this, 0, NULL);
+		hWorkerThread = CreateThread(NULL, 0, Mousemat::Thread_LoadingAnimationOnMousepad, this, 0, NULL);
 		CloseHandle(hWorkerThread);
 		break;
 	case 3:
-		//hWorkerThread = CreateThread(NULL, 0, Thread_LoadingAnimationOnMice, this, 0, NULL);
+		hWorkerThread = CreateThread(NULL, 0, MouseDevice::Thread_LoadingAnimationOnMice, this, 0, NULL);
 		CloseHandle(hWorkerThread);
 		break;
 	case 4:

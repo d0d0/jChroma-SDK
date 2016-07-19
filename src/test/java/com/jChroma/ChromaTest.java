@@ -122,4 +122,9 @@ public class ChromaTest {
         t1.join();
     }
 
+    @Test
+    public void knightRider() throws InterruptedException {
+        chroma.getMousemat().knightRider();
+    }
+
 }

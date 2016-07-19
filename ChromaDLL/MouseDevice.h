@@ -8,7 +8,7 @@
 #include "SDK/RzChromaSDKTypes.h"
 #include "SDK/RzErrors.h"
 
-class MouseDevice{
+class MouseDevice {
 	typedef RZRESULT(*SETEFFECT)(RZEFFECTID EffectId);
 	typedef RZRESULT(*DELETEEFFECT)(RZEFFECTID EffectId);
 	SETEFFECT SetEffect = NULL;
@@ -21,6 +21,7 @@ public:
 	void ShowAlert(COLORREF Color);
 	void ShowDamageEffect();
 	void ResetEffects();
+	static DWORD WINAPI Thread_LoadingAnimationOnMice(LPVOID lpParameter);
 };
 
 #endif // !_MOUSE_H

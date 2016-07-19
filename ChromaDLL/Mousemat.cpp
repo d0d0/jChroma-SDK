@@ -147,7 +147,7 @@ void Mousemat::SetColors(const MousematColorStruct* colors, int numVal) {
 	}
 }
 
-DWORD WINAPI Thread_LoadingAnimationOnMousepad(LPVOID lpParameter) {
+DWORD WINAPI Mousemat::Thread_LoadingAnimationOnMousepad(LPVOID lpParameter) {
 	if (CreateMousepadEffect) {
 		CreateMousepadEffect(ChromaSDK::Mousepad::CHROMA_NONE, NULL, NULL);
 		Sleep(500);

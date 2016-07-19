@@ -152,7 +152,6 @@
     <ClInclude Include="ChromaSDKImpl.h" />
     <ClInclude Include="MouseDevice.h" />
     <ClInclude Include="Mousemat.h" />
-    <ClInclude Include="resource.h" />
     <ClInclude Include="SDK\RzChromaSDKDefines.h" />
     <ClInclude Include="SDK\RzChromaSDKTypes.h" />
     <ClInclude Include="SDK\RzErrors.h" />
