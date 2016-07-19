@@ -77,4 +77,88 @@ public final class Mousemat extends AbstractDevice {
 
         super.jChromaInterface.setColors(0, byReference, 15);
     }
+
+    public void makeRainbow(){
+        MousematColorStruct.ByReference byReference = new MousematColorStruct.ByReference();
+
+        MousematColorStruct[] mousematColorStructs = (MousematColorStruct[]) byReference.toArray(15);
+
+        mousematColorStructs[0].position = 0;
+        mousematColorStructs[0].r = 238;
+        mousematColorStructs[0].g = 0;
+        mousematColorStructs[0].b = 0;
+
+        mousematColorStructs[1].position = 1;
+        mousematColorStructs[1].r = 238;
+        mousematColorStructs[1].g = 77;
+        mousematColorStructs[1].b = 17;
+
+        mousematColorStructs[2].position = 2;
+        mousematColorStructs[2].r = 238;
+        mousematColorStructs[2].g = 154;
+        mousematColorStructs[2].b = 0;
+
+        mousematColorStructs[3].position = 3;
+        mousematColorStructs[3].r = 238;
+        mousematColorStructs[3].g = 231;
+        mousematColorStructs[3].b = 0;
+
+        mousematColorStructs[4].position = 4;
+        mousematColorStructs[4].r = 167;
+        mousematColorStructs[4].g = 238;
+        mousematColorStructs[4].b = 0;
+
+        mousematColorStructs[5].position = 5;
+        mousematColorStructs[5].r = 90;
+        mousematColorStructs[5].g = 238;
+        mousematColorStructs[5].b = 0;
+
+        mousematColorStructs[6].position = 6;
+        mousematColorStructs[6].r = 13;
+        mousematColorStructs[6].g = 238;
+        mousematColorStructs[6].b = 0;
+
+        mousematColorStructs[7].position = 7;
+        mousematColorStructs[7].r = 0;
+        mousematColorStructs[7].g = 238;
+        mousematColorStructs[7].b = 63;
+
+
+        mousematColorStructs[8].position = 8;
+        mousematColorStructs[8].r = 0;
+        mousematColorStructs[8].g = 238;
+        mousematColorStructs[8].b = 141;
+
+        mousematColorStructs[9].position = 9;
+        mousematColorStructs[9].r = 0;
+        mousematColorStructs[9].g = 238;
+        mousematColorStructs[9].b = 218;
+
+        mousematColorStructs[10].position = 10;
+        mousematColorStructs[10].r = 0;
+        mousematColorStructs[10].g = 180;
+        mousematColorStructs[10].b = 238;
+
+        mousematColorStructs[11].position = 11;
+        mousematColorStructs[11].r = 0;
+        mousematColorStructs[11].g = 103;
+        mousematColorStructs[11].b = 238;
+
+        mousematColorStructs[12].position = 12;
+        mousematColorStructs[12].r = 0;
+        mousematColorStructs[12].g = 26;
+        mousematColorStructs[12].b = 238;
+
+        mousematColorStructs[13].position = 13;
+        mousematColorStructs[13].r = 50;
+        mousematColorStructs[13].g = 0;
+        mousematColorStructs[13].b = 238;
+
+        mousematColorStructs[14].position = 14;
+        mousematColorStructs[14].r = 127;
+        mousematColorStructs[14].g = 0;
+        mousematColorStructs[14].b = 238;
+
+        super.jChromaInterface.setColors(0, byReference, 15);
+    }
 }

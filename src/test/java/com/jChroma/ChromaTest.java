@@ -105,4 +105,22 @@ public class ChromaTest {
         t1.join();
     }
 
+    @Test
+    public void makeRainbow() throws InterruptedException {
+        Thread t1 = new Thread() {
+            public void run() {
+                System.out.println("You have rainbow now");
+                chroma.getMousemat().makeRainbow();
+                try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        t1.start();
+        t1.join();
+    }
+
 }
