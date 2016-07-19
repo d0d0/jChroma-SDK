@@ -12,6 +12,9 @@ public final class Mousemat extends AbstractDevice {
 
     private static Mousemat INSTANCE;
 
+    private Mousemat() {
+    }
+
     public static Mousemat getInstance() {
         if (INSTANCE == null) {
             INSTANCE = new Mousemat();
@@ -78,7 +81,7 @@ public final class Mousemat extends AbstractDevice {
         super.jChromaInterface.setColors(0, byReference, 15);
     }
 
-    public void makeRainbow(){
+    public void makeRainbow() {
         MousematColorStruct.ByReference byReference = new MousematColorStruct.ByReference();
 
         MousematColorStruct[] mousematColorStructs = (MousematColorStruct[]) byReference.toArray(15);

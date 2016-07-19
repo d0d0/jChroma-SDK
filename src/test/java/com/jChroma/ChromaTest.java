@@ -14,8 +14,7 @@ public class ChromaTest {
 
     @Before
     public void setUp() {
-        chroma = new Chroma(true);
-        chroma.initialize();
+        chroma = Chroma.getInstance();
     }
 
     @Test
