@@ -2,6 +2,50 @@
 # jChroma SDK
 Unofficial Java wrapper for Razer Chroma SDK
 
+Goals
+-----
+#### Mousemat
+- [X] Static color
+- [ ] Breathing
+- [ ] Spectrum cycling
+- [ ] Wave
+- [X] Custom
+
+#### Mouse
+- [ ] Blinking
+- [ ] Breathing
+- [ ] Reactive
+- [ ] Spectrum cycling
+- [ ] Static color
+- [ ] Wave
+- [ ] Custom
+- [ ] Custom using grid
+
+#### Keyboard
+- [ ] Breathing
+- [ ] Custom
+- [ ] Reactive
+- [ ] Static color
+- [ ] Spectrum cycling
+- [ ] Wave
+- [ ] Starlight
+- [ ] Custom key
+
+#### Keypad
+- [ ] Breathing
+- [ ] Custom
+- [ ] Reactive
+- [ ] Spectrum cycling
+- [ ] Static color
+- [ ] Wave
+
+#### Headset
+- [ ] Static color
+- [ ] Breathing
+- [ ] Spectrum cycling
+- [ ] Custim
+
+
 Installation
 ------------
 Add to your `pom.xml` file
