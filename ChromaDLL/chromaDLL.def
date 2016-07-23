@@ -6,5 +6,6 @@ unInitialize
 playLoadingAnimation
 showDamageEffect
 showGauge
-showColor
+setStaticColorMode
+setBreathingMode
 setColors

@@ -10,4 +10,14 @@ typedef struct MousematColorStruct {
 	int b;
 } MousematColorStruct;
 
+typedef struct BreathingEffectStruct {
+	int type;
+	int color1R;
+	int color1G;
+	int color1B;
+	int color2R;
+	int color2G;
+	int color2B;
+} BreathingEffectStruct;
+
 #endif

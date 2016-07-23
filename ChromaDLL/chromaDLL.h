@@ -12,7 +12,8 @@ namespace chromaDLLNS
 		void playLoadingAnimation(int deviceType);
 		void showDamageEffect(int deviceType);
 		void showGauge(int i, int deviceType);
-		void showColor(int r, int g, int b, int deviceType);
+		void setStaticColorMode(int deviceType, int r, int g, int b);
+		void setBreathingMode(int deviceType, const BreathingEffectStruct* breathingEffectStruct);
 		void setColors(const MousematColorStruct* colors, int numVals);
 	};
 }

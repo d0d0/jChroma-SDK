@@ -48,6 +48,7 @@ public:
 	void ShowBitmap(UINT DeviceType, HBITMAP hBitmap);
 	void ShowDamageEffect(UINT DeviceType);
 	void ShowColor(UINT DeviceType, COLORREF Color);
+	void SetBreathingMode(UINT DeviceType, const BreathingEffectStruct* breathingEffectStruct);
 	void ResetEffects(UINT DeviceType);
 	BOOL IsDeviceConnected(RZDEVICEID DeviceId);
 	void SetColors(const MousematColorStruct* colors, int numVal);

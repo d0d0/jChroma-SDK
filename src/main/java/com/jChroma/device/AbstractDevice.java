@@ -1,5 +1,7 @@
 package com.jChroma.device;
 
+import com.jChroma.inteface.structs.BreathingEffectStruct;
+import com.jChroma.utils.BreathingEffectType;
 import com.jChroma.utils.Colors;
 import com.jChroma.utils.DeviceTypes;
 
@@ -19,19 +21,35 @@ abstract class AbstractDevice {
         jChromaInterface.playLoadingAnimation(0, deviceType.getValue());
     }
 
-    void showColor(Color color, DeviceTypes deviceType) {
+    void setStaticColorMode(Color color, DeviceTypes deviceType) {
 
-        this.showColor(color.getRed(), color.getGreen(), color.getBlue(), deviceType);
+        this.setStaticColorMode(color.getRed(), color.getGreen(), color.getBlue(), deviceType);
     }
 
-    void showColor(Colors color, DeviceTypes deviceType) {
+    void setStaticColorMode(Colors color, DeviceTypes deviceType) {
 
-        this.showColor(color.getR(), color.getG(), color.getB(), deviceType);
+        this.setStaticColorMode(color.getR(), color.getG(), color.getB(), deviceType);
     }
 
-    void showColor(int r, int g, int b, DeviceTypes deviceType) {
+    void setStaticColorMode(int r, int g, int b, DeviceTypes deviceType) {
 
-        jChromaInterface.showColor(0, r, g, b, deviceType.getValue());
+        jChromaInterface.setStaticColorMode(0, deviceType.getValue(), r, g, b);
+    }
+
+    void setBreathingMode(BreathingEffectType breathingEffectType, DeviceTypes deviceType){
+        BreathingEffectStruct.ByReference byReference= new BreathingEffectStruct.ByReference();
+
+        byReference.color1R = breathingEffectType.getColor1().getR();
+        byReference.color1G = breathingEffectType.getColor1().getG();
+        byReference.color1B = breathingEffectType.getColor1().getB();
+
+        byReference.color2R = breathingEffectType.getColor2().getR();
+        byReference.color2G = breathingEffectType.getColor2().getG();
+        byReference.color2B = breathingEffectType.getColor2().getB();
+
+        byReference.type = breathingEffectType.getBreathingType().getValue();
+
+        jChromaInterface.setBreathingMode(0, deviceType.getValue(), byReference);
     }
 
     void showDamageEffect(DeviceTypes deviceType) {

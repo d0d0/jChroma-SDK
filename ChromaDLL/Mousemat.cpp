@@ -147,6 +147,27 @@ void Mousemat::SetColors(const MousematColorStruct* colors, int numVal) {
 	}
 }
 
+void Mousemat::SetBreathing(const BreathingEffectStruct* breathingEffectStruct) {
+	if (CreateMousepadEffect) {
+		CreateMousepadEffect(ChromaSDK::Mousepad::CHROMA_NONE, NULL, NULL);
+
+		ChromaSDK::Mousepad::BREATHING_EFFECT_TYPE BreathingEffect = {};
+
+		if (breathingEffectStruct->type == 1) {
+			BreathingEffect.Type = ChromaSDK::Mousepad::BREATHING_EFFECT_TYPE::Type::TWO_COLORS;
+
+			BreathingEffect.Color1 = RGB(breathingEffectStruct->color1R, breathingEffectStruct->color1G, breathingEffectStruct->color1B);
+			BreathingEffect.Color2 = RGB(breathingEffectStruct->color2R, breathingEffectStruct->color2G, breathingEffectStruct->color2B);
+		}
+
+		if (breathingEffectStruct->type == 2) {
+			BreathingEffect.Type = ChromaSDK::Mousepad::BREATHING_EFFECT_TYPE::Type::RANDOM_COLORS;
+		}
+
+		CreateMousepadEffect(ChromaSDK::Mousepad::CHROMA_BREATHING, &BreathingEffect, NULL);
+	}
+}
+
 DWORD WINAPI Mousemat::Thread_LoadingAnimationOnMousepad(LPVOID lpParameter) {
 	if (CreateMousepadEffect) {
 		CreateMousepadEffect(ChromaSDK::Mousepad::CHROMA_NONE, NULL, NULL);

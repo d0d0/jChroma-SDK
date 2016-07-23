@@ -1,6 +1,8 @@
 package com.jChroma.device;
 
-import com.jChroma.inteface.MousematColorStruct;
+import com.jChroma.inteface.structs.BreathingEffectStruct;
+import com.jChroma.inteface.structs.MousematColorStruct;
+import com.jChroma.utils.BreathingEffectType;
 import com.jChroma.utils.Colors;
 import com.jChroma.utils.DeviceTypes;
 
@@ -33,19 +35,24 @@ public final class Mousemat extends AbstractDevice {
         super.playLoadingAnimation(deviceType);
     }
 
-    public void showColor(Color color) {
+    public void setStaticColorMode(Color color) {
 
-        super.showColor(color, deviceType);
+        super.setStaticColorMode(color, deviceType);
     }
 
-    public void showColor(Colors color) {
+    public void setStaticColorMode(Colors color) {
 
-        super.showColor(color, deviceType);
+        super.setStaticColorMode(color, deviceType);
     }
 
-    public void showColor(int r, int g, int b) {
+    public void setStaticColorMode(int r, int g, int b) {
 
-        super.showColor(r, g, b, deviceType);
+        super.setStaticColorMode(r, g, b, deviceType);
+    }
+
+    public void setBreathingMode(BreathingEffectType breathingEffectType) {
+
+        super.setBreathingMode(breathingEffectType, deviceType);
     }
 
     public void showDamageEffect() {
@@ -55,7 +62,6 @@ public final class Mousemat extends AbstractDevice {
 
     public void setColors() {
         MousematColorStruct.ByReference byReference = new MousematColorStruct.ByReference();
-
 
         MousematColorStruct[] mousematColorStructs = (MousematColorStruct[]) byReference.toArray(15);
 
@@ -191,13 +197,13 @@ public final class Mousemat extends AbstractDevice {
 
                     redPosition += direction;
                     if (redPosition == 0 || redPosition == 14) {
-                        direction *= -1;
+                        direction = direction * -1;
                     }
 
                     jChromaInterface.setColors(0, byReference, 15);
 
                     try {
-                        Thread.sleep(1000);
+                        Thread.sleep(100);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }

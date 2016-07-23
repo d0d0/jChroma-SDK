@@ -1,5 +1,8 @@
 package com.jChroma.inteface;
 
+import com.jChroma.inteface.structs.BreathingEffectStruct;
+import com.jChroma.inteface.structs.MousematColorStruct;
+import com.jChroma.utils.BreathingEffectType;
 import com.jChroma.utils.NativeUtils;
 import com.sun.jna.Library;
 
@@ -23,7 +26,9 @@ public interface jChromaInterface extends Library {
 
     void resetEffects(int ignored, int deviceType);
 
-    void showColor(int ignored, int r, int g, int b, int deviceType);
+    void setStaticColorMode(int ignored, int deviceType, int r, int g, int b);
+
+    void setBreathingMode(int ignored, int deviceType, BreathingEffectStruct.ByReference breathingType);
 
     void setColors(int ignored, MousematColorStruct.ByReference colors, int numVals);
 }

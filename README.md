@@ -6,7 +6,7 @@ Goals
 -----
 #### Mousemat
 - [X] Static color
-- [ ] Breathing
+- [X] Breathing
 - [ ] Spectrum cycling
 - [ ] Wave
 - [X] Custom

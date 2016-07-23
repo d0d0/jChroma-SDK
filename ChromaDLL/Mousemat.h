@@ -24,6 +24,7 @@ public:
 	void ShowDamageEffect();
 	void ResetEffects();
 	void SetColors(const MousematColorStruct* colors, int numVal);
+	void SetBreathing(const BreathingEffectStruct* breathingEffectStruct);
 	static DWORD WINAPI Thread_LoadingAnimationOnMousepad(LPVOID lpParameter);
 };
 

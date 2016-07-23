@@ -1351,6 +1351,26 @@ void CChromaSDKImpl::ShowColor(UINT DeviceType, COLORREF Color)
 	}
 }
 
+void CChromaSDKImpl::SetBreathingMode(UINT DeviceType, const BreathingEffectStruct* breathingEffectStruct) {
+	switch (DeviceType) {
+	case 1:
+	    // TODO: Keyboard
+		break;
+	case 2:
+		mousemat.SetBreathing(breathingEffectStruct);
+		break;
+	case 3:
+	    // TODO: Mouse
+		break;
+	case 4:
+	    // TODO: Headset
+		break;
+	case 5:
+	    // TODO: Keypad
+		break;
+	}
+}
+
 void CChromaSDKImpl::ResetEffects(UINT DeviceType)
 {
 	switch (DeviceType)

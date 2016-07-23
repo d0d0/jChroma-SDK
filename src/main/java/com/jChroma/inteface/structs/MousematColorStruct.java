@@ -1,4 +1,4 @@
-package com.jChroma.inteface;
+package com.jChroma.inteface.structs;
 
 import com.sun.jna.Structure;
 
@@ -9,13 +9,13 @@ public class MousematColorStruct extends Structure {
 
     public static class ByReference extends MousematColorStruct implements Structure.ByReference {}
 
-    public int b;
+    public int r;
 
     public int g;
 
-    public int position;
+    public int b;
 
-    public int r;
+    public int position;
 
     @Override
     public List getFieldOrder() {
